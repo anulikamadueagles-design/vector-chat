@@ -1,0 +1,5 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+model User { id String @id @default(cuid()) name String username String @unique email String @unique passwordHash String avatarUrl String? createdAt DateTime @default(now()) online Boolean @default(false) }
+model Conversation { id String @id @default(cuid()) isGroup Boolean @default(false) name String? createdAt DateTime @default(now()) lastMessageAt DateTime @default(now()) }
+model Message { id String @id @default(cuid()) conversationId String senderId String content String? createdAt DateTime @default(now()) }

@@ -1,0 +1,1 @@
+# VECTOR CHAT\nConnect. Chat. Share.\nBy David Kamsi Elvis | Vector's Element Tech\nRepo: anulikamadueagles-design/vector-chat\n

@@ -1,0 +1,16 @@
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import cors from "cors";
+import helmet from "helmet";
+import dotenv from "dotenv";
+dotenv.config();
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {cors:{origin:"*"}});
+app.use(helmet()); app.use(cors({origin:"*"})); app.use(express.json());
+app.get("/health",(req,res)=>res.json({ok:true,app:"VECTOR CHAT",owner:"David Kamsi Elvis",company:"Vector's Element Tech"}));
+app.get("/",(req,res)=>res.send("VECTOR CHAT API - Connect. Chat. Share. by Vector's Element Tech"));
+io.on("connection",(socket)=>{console.log("user connected",socket.id); socket.on("message",(data)=>{io.emit("message",data)});});
+const PORT = Number(process.env.PORT)||4000;
+server.listen(PORT,"0.0.0.0",()=>console.log(`VECTOR CHAT backend on 0.0.0.0:${PORT}`));
